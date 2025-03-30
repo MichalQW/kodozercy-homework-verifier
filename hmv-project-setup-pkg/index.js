@@ -24,6 +24,7 @@ const installCypress = () => {
 
 const createWorkflow = () => {
     const dirPath = path.join(projectRoot, '.github', 'workflows');
+    if (fs.existsSync(dirPath)) return;
     fs.mkdirSync(dirPath, { recursive: true });
 
     const yamlContent = `name: Homework Validation and Cypress Tests
@@ -119,6 +120,7 @@ const addCyRunScript = () => {
     const newScript = "cypress run --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=false,json=true";
 
     packageJson.scripts = packageJson.scripts || {};
+    if (packageJson.scripts['cy:run']) return;
     packageJson.scripts['cy:run'] = newScript;
 
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
@@ -127,6 +129,7 @@ const addCyRunScript = () => {
 
 const createCypressConfig = () => {
     const configPath = path.join(projectRoot, 'cypress.config.js');
+    if (fs.existsSync(configPath)) return;
     const configContent = `import { defineConfig } from "cypress";
 
 export default defineConfig({
@@ -142,6 +145,7 @@ export default defineConfig({
 
 const createExampleTestFile = () => {
     const testDirPath = path.join(projectRoot, 'cypress', 'e2e');
+    if (fs.existsSync(testDirPath)) return;
     fs.mkdirSync(testDirPath, { recursive: true });
 
     const testFilePath = path.join(testDirPath, 'spec.cy.js');
@@ -179,6 +183,7 @@ describe('Category B Tests', () => {
 
 const createSupportFile = () => {
     const supportDirPath = path.join(projectRoot, 'cypress', 'support');
+    if (fs.existsSync(supportDirPath)) return;
     fs.mkdirSync(supportDirPath, { recursive: true });
 
     const supportFilePath = path.join(supportDirPath, 'e2e.js');
