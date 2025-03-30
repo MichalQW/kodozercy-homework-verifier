@@ -1,0 +1,15 @@
+{
+  "name": "mydevcave-hwv-project-setup",
+  "version": "1.0.5",
+  "description": "",
+  "license": "ISC",
+  "author": "mydevcave",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "devDependencies": {
+    "cypress": "^14.2.1"
+  }
+}
