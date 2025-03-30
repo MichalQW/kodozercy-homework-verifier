@@ -75,6 +75,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        
+      - name: Run Vite dev server
+        run: npm run dev &
+
+      - name: Wait for localhost to be ready
+        run: npx wait-on http://localhost:5173 --timeout 60000
 
       - name: Run Cypress Tests
         run: |
@@ -135,7 +141,8 @@ const createCypressConfig = () => {
 export default defineConfig({
   e2e: {
     specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
-    supportFile: "cypress/support/e2e.js"
+    supportFile: "cypress/support/e2e.js",
+    baseUrl: 'http://localhost:5173',
   },
 });
 `;
