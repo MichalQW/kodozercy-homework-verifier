@@ -76,10 +76,9 @@ module.exports = async (req, res) => {
             testResult
         };
 
-        console.log(studentRepository);
         const repoParts = studentRepository.split('/');
-        const githubUsername = repoParts[3];
-        const [userId, taskId] = repoParts[4].split('-');
+        const githubUsername = repoParts[0];
+        const [userId, taskId] = repoParts[1].split('-');
         const redisKey = `${githubUsername}-${userId}-${taskId}`;
 
         await redis.set(redisKey, JSON.stringify(data));
