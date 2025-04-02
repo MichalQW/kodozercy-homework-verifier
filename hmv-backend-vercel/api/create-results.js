@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
 const {createClient} = require('redis');
 
-const redis = createClient({
+const redisClient = createClient({
     url: process.env.REDIS_URL
 });
 
