@@ -76,6 +76,7 @@ module.exports = async (req, res) => {
             testResult
         };
 
+        console.log(studentRepository);
         const repoParts = studentRepository.split('/');
         const githubUsername = repoParts[3];
         const [userId, taskId] = repoParts[4].split('-');
