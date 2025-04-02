@@ -103,7 +103,7 @@ jobs:
 
           TEST_RESULTS=\$(cat cypress/results/output.json | jq '.')
 
-          curl -X POST https://express-server-test-hazel.vercel.app/api/results \
+          curl -X POST https://kodozercy-homework-verifier.vercel.app/api/create-results \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer \$ID_TOKEN" \
             -d @- <<EOF
