@@ -6,7 +6,13 @@ const redis = createClient({
     url: process.env.REDIS_URL
 });
 
-redis.connect().catch(err => console.error('Redis Connection Error:', err));
+async function connectRedis() {
+    if (!redisClient.isOpen) {
+        await redisClient.connect();
+    }
+}
+
+await connectRedis();
 
 const client = jwksClient({
     jwksUri: 'https://token.actions.githubusercontent.com/.well-known/jwks'
