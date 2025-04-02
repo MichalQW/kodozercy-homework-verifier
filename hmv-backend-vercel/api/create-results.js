@@ -12,8 +12,6 @@ async function connectRedis() {
     }
 }
 
-await connectRedis();
-
 const client = jwksClient({
     jwksUri: 'https://token.actions.githubusercontent.com/.well-known/jwks'
 });
@@ -43,6 +41,8 @@ function verifyGithubOidc(token) {
 }
 
 module.exports = async (req, res) => {
+    await connectRedis();
+
     if (req.method !== 'POST') {
         res.status(405).json({error: 'Method not allowed, only POST is permissible.'});
         return;
