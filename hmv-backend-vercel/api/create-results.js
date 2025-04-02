@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
         const [userId, taskId] = repoParts[1].split('-');
         const redisKey = `${githubUsername}-${userId}-${taskId}`;
 
-        await redis.set(redisKey, JSON.stringify(data));
+        await redisClient.set(redisKey, JSON.stringify(data));
 
         console.log(`Data stored in Redis under key: ${redisKey}`);
 
