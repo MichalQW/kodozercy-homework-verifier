@@ -4,11 +4,9 @@ const redisClient = createClient({
     url: process.env.REDIS_URL,
 });
 
-let connected = false;
 async function connectRedis() {
-    if (!connected) {
+    if (!redisClient.isOpen) {
         await redisClient.connect();
-        connected = true;
     }
 }
 
